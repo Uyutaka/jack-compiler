@@ -1,0 +1,13 @@
+{
+    "name": "C++ Env",
+    "dockerFile": "Dockerfile",
+    // Extension for VSCode
+    "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-extension-pack",
+        "ms-vscode.cmake-tools",
+        "WakaTime.vscode-wakatime",
+        "ms-vscode.makefile-tools",
+        "streetsidesoftware.code-spell-checker"
+    ]
+}

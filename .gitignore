@@ -1,0 +1,9 @@
+*.o
+.DS_Store
+*.out
+*.tst
+*.cmp
+*.asm
+core
+*.out_xml
+*.zip
