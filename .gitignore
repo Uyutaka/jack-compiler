@@ -7,3 +7,5 @@
 core
 *.out_xml
 *.zip
+JackAnalyzer
+output

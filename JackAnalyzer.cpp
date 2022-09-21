@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 
+#include "JackTokenizer.cpp";
+
 using std::vector;
 namespace fs = std::filesystem;
 using std::cout;
@@ -26,17 +28,45 @@ class JackAnalyzer {
       /////////////////////////
       // TODO Call tokenizer //
       /////////////////////////
-      cout << ss.str() << endl;
-      cout << endl << endl;
 
-      // Handle output file
+      // Handle output file for tokenizer
+      path.replace_filename(path.stem().string() + "T");
       path.replace_extension(".out_xml");
       outfile.open(path);
+      outfile << "<tokens>" << endl;
+      JackTokenizer tokenizer(ss.str());
+      while (tokenizer.hasMoreTokens()) {
+        tokenizer.advance();
+        switch (tokenizer.getTokenType()) {
+          case KEYWORD:
+            outfile << "<keyword> " << tokenizer.getKeyword() << " </keyword>"
+                    << endl;
+            break;
+          case SYMBOL:
+            outfile << "<symbol> " << tokenizer.getSymbol() << " </symbol>"
+                    << endl;
+            break;
+          case IDENTIFIER:
+            outfile << "<identifier> " << tokenizer.getIdentifier()
+                    << " </identifier>" << endl;
+            break;
+          case INT_CONST:
+            outfile << "<integerConstant> " << tokenizer.getIntVal()
+                    << " </integerConstant>" << endl;
+            break;
+          case STRING_CONST:
+            outfile << "<stringConstant> " << tokenizer.getStringVal()
+                    << " </stringConstant>" << endl;
+            break;
+        }
+      }
+      outfile << "</tokens>" << endl;
+
+      outfile.close();
+
       /////////////////////////////////
       // TODO Call CompilationEngine //
       /////////////////////////////////
-
-      outfile.close();
     }
   }
 
