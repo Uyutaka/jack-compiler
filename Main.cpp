@@ -1,3 +1,4 @@
+
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -5,7 +6,7 @@
 #include <string>
 #include <vector>
 
-#include "JackAnalyzer.cpp";
+#include "JackAnalyzer.h"
 using std::cout;
 using std::endl;
 using std::ifstream;
@@ -14,9 +15,7 @@ using std::string;
 using std::vector;
 namespace fs = std::filesystem;
 int main(int argc, char *argv[]) {
-  // fs::path path = "project10/ArrayTest/Main.jack";  // File
-  fs::path path = "project10/Square";  // Directory
-
+  fs::path path;
   vector<fs::path> paths;
 
   if (argc == 2) {

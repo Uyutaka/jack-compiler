@@ -1,5 +1,5 @@
-#ifndef TOKENTYPE_H_
-#define TOKENTYPE_H_
+#ifndef TOKEN_TYPE_H_
+#define TOKEN_TYPE_H_
 
 enum TokenType {
   KEYWORD,       // EX: class
