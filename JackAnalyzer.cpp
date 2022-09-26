@@ -1,22 +1,25 @@
-
 #include "JackAnalyzer.h"
 
+#include "CompilationEngine.h"
 #include "JackTokenizer.h"
 
-JackAnalyzer::JackAnalyzer(const std::vector<std::filesystem::path>& paths) {
+JackAnalyzer::JackAnalyzer(const vector<fs::path>& paths) {
   for (auto path : paths) {
     infile.open(path);
     extractJackLines();
     infile.close();
 
+    // Generate paths for T.XML, .XML
+    fs::path tokenPath = path;
+    fs::path xmlPath = path;
+    tokenPath.replace_filename(tokenPath.stem().string() + "T");
+    tokenPath.replace_extension(".out_xml");
+    xmlPath.replace_extension(".out_xml");
+
     //////////////////////////////////////////////
     ////////////////// Tokenize //////////////////
     //////////////////////////////////////////////
-
-    // Handle output file for tokenizer
-    path.replace_filename(path.stem().string() + "T");
-    path.replace_extension(".out_xml");
-    outfile.open(path);
+    outfile.open(tokenPath);
     outfile << "<tokens>" << endl;
     JackTokenizer tokenizer(ss.str());
     while (tokenizer.hasMoreTokens()) {
@@ -47,9 +50,11 @@ JackAnalyzer::JackAnalyzer(const std::vector<std::filesystem::path>& paths) {
     outfile << "</tokens>" << endl;
     outfile.close();
 
-    /////////////////////////////////
-    // TODO Call CompilationEngine //
-    /////////////////////////////////
+    ///////////////////////////////////////////////////////
+    ////////////////// CompilationEngine //////////////////
+    ///////////////////////////////////////////////////////
+    JackTokenizer jt(ss.str());
+    CompilationEngine engine(jt, xmlPath.string());
   }
 }
 

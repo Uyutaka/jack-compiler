@@ -10,3 +10,5 @@ core
 JackAnalyzer
 output
 Main
+CompilationEngine
+JackTokenizer

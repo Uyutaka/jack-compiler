@@ -1,31 +1,40 @@
-JackAnalyzer:
+JackAnalyzer: Main.cpp CompilationEngine.cpp JackAnalyzer.cpp JackTokenizer.cpp
 	g++ -o JackAnalyzer -Wall -Wextra -pedantic -std=c++17 Main.cpp CompilationEngine.cpp JackAnalyzer.cpp JackTokenizer.cpp -lstdc++fs -Os
-	
 
-# all: clean build run test1
+run:
+	./JackAnalyzer project10/ArrayTest
+	./JackAnalyzer project10/ExpressionLessSquare
+	./JackAnalyzer project10/Square
 
-# build: VMTranslator.cpp Parser.cpp CodeWriter.cpp
-# 	g++ -o VMTranslator -Wall -Wextra -pedantic -std=c++17 VMTranslator.cpp Parser.cpp CodeWriter.cpp -lstdc++fs -Os
 
-# run:
-# 	./VMTranslator test/BasicTest.vm
-# 	./VMTranslator test/PointerTest.vm
-# 	./VMTranslator test/SimpleAdd.vm
-# 	./VMTranslator test/StackTest.vm
-# 	./VMTranslator test/StaticTest.vm
+testAll:
+    # ArrayTest
+	diff -w project10/ArrayTest/Main.xml project10/ArrayTest/Main.out_xml
+	diff -w project10/ArrayTest/MainT.xml project10/ArrayTest/MainT.out_xml
+    # ExpressionLessSquare
+	diff -w project10/ExpressionLessSquare/Main.xml project10/ExpressionLessSquare/Main.out_xml
+	diff -w project10/ExpressionLessSquare/MainT.xml project10/ExpressionLessSquare/MainT.out_xml
 
-# clean:
-# 	rm VMTranslator
+	diff -w project10/ExpressionLessSquare/Square.xml project10/ExpressionLessSquare/Square.out_xml
+	diff -w project10/ExpressionLessSquare/SquareT.xml project10/ExpressionLessSquare/SquareT.out_xml
 
-# 	rm test/BasicTest.asm
-# 	rm test/PointerTest.asm
-# 	rm test/SimpleAdd.asm
-# 	rm test/StackTest.asm
-# 	rm test/StaticTest.asm
+	diff -w project10/ExpressionLessSquare/SquareGame.xml project10/ExpressionLessSquare/SquareGame.out_xml
+	diff -w project10/ExpressionLessSquare/SquareGameT.xml project10/ExpressionLessSquare/SquareGameT.out_xml
 
-# test1:
-# 	diff test/BasicTest.asm test/BasicTest.expected_asm
-# 	diff test/PointerTest.asm test/PointerTest.expected_asm
-# 	diff test/SimpleAdd.asm test/SimpleAdd.expected_asm
-# 	diff test/StackTest.asm test/StackTest.expected_asm
-# 	diff test/StaticTest.asm test/StaticTest.expected_asm
+
+    # Square
+	diff -w project10/Square/Main.xml project10/Square/Main.out_xml
+	diff -w project10/Square/MainT.xml project10/Square/MainT.out_xml
+
+	diff -w project10/Square/Square.xml project10/Square/Square.out_xml
+	diff -w project10/Square/SquareT.xml project10/Square/SquareT.out_xml
+
+	diff -w project10/Square/SquareGame.xml project10/Square/SquareGame.out_xml
+	diff -w project10/Square/SquareGameT.xml project10/Square/SquareGameT.out_xml
+
+clean:
+	rm JackAnalyzer
+	rm project10/ArrayTest/*.out_xml
+	rm project10/ExpressionLessSquare/*.out_xml
+	rm project10/Square/*.out_xml
+

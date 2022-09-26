@@ -26,6 +26,7 @@ class JackTokenizer {
   JackTokenizer(string file);
   bool hasMoreTokens();
   void advance();
+  void back();
 
   TokenType getTokenType();
   string getKeyword();

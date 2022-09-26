@@ -7,7 +7,7 @@
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [
-                "project10/Square"
+                "project10/ArrayTest"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
